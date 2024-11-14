@@ -119,17 +119,10 @@ filter_types_dict = {
 
 def save_image(image, filter_type):
     """Save the image, then return the full file path of the saved image."""
-    # Append the filter type at the beginning (in case the user wants to 
-    # apply multiple filters to 1 image, there won't be a name conflict)
     new_file_name = f"{filter_type}-{image.filename}"
     image.filename = new_file_name
-
-    # Construct full file path
     file_path = os.path.join(app.root_path, 'static/images', new_file_name)
-    
-    # Save the image
     image.save(file_path)
-
     return file_path
 
 
@@ -146,19 +139,9 @@ def image_filter():
     filter_types = filter_types_dict.keys()
 
     if request.method == 'POST':
-        
-        # TODO: Get the user's chosen filter type (whichever one they chose in the form) and save
-        # as a variable
-        # HINT: remember that we're working with a POST route here so which requests function would you use?
         filter_type = request.form.get('filter_type')
-        
-        # Get the image file submitted by the user
         image = request.files.get('users_image')
 
-        # TODO: call `save_image()` on the image & the user's chosen filter type, save the returned
-        # value as the new file path
-
-        # TODO: Call `apply_filter()` on the file path & filter type
         file_path = save_image(image, filter_type) 
         apply_filter(file_path, filter_type)
 
@@ -171,7 +154,7 @@ def image_filter():
 
         return render_template('image_filter.html', **context)
 
-    else: # if it's a GET request
+    else: 
         context = {
             'filter_types': filter_types
         }
