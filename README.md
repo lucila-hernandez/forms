@@ -7,4 +7,4 @@ This project demonstrates the use of forms in web development to create interact
 Python, HTML
 
 ## How to Use
-Open Browser and go to: 127.0.0.1:5000
+Open Browser and go to: http://127.0.0.1:5000/
